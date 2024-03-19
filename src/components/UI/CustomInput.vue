@@ -1,0 +1,39 @@
+<template>
+  <div class="flex flex-col">
+    <label for="customInput" :class="`text-${props.textColor} pb-1`">{{props.label}}</label>
+    <input
+        id="customInput"
+        :value="modelValue"
+        @input="updateValue($event.target.value)"
+        :type="props.inputType"
+        :placeholder="props.placeholder"
+        class="bg-gray-300 p-3 rounded-lg outline-0"
+    >
+    <span class="text-red-500" v-if="props.errorMessage">{{ props.errorMessage }}</span>
+  </div>
+</template>
+
+<script setup lang="ts">
+import { defineProps, defineEmits } from 'vue';
+
+const props = defineProps<{
+  modelValue: string
+  placeholder?: string
+  label?: string
+  errorMessage?: string
+  inputType?: string
+  textColor?: string
+}>()
+
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+}>()
+
+const updateValue = (value: string) => {
+  emit("update:modelValue", value);
+}
+</script>
+
+<style scoped>
+/* Your scoped styles */
+</style>

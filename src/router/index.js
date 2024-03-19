@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Hello from '../components/TailwindTest.vue';
+import Login from '../views/Login.vue'
 
 
 const routes = [
   {
     path: '/',
-    component: Hello
+    component: Login
   },
   // {
   //   path: '/about',
