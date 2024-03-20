@@ -1,13 +1,14 @@
 <template>
   <div class="flex flex-col">
-    <label for="customInput" :class="`text-${props.textColor} pb-1`">{{props.label}}</label>
+    <label :for="props.placeholder" :class="`text-${props.textColor} pb-1`">{{props.label}}</label>
     <input
-        id="customInput"
+        :id="props.placeholder"
         :value="modelValue"
         @input="updateValue($event.target.value)"
         :type="props.inputType"
         :placeholder="props.placeholder"
-        class="bg-gray-300 p-3 rounded-lg outline-0"
+        class="bg-gray-00 p-3 rounded-lg outline-0 "
+        :class="{'border-4 border-red-700': errorMessage}"
     >
     <span class="text-red-500" v-if="props.errorMessage">{{ props.errorMessage }}</span>
   </div>
@@ -27,10 +28,12 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
+  (e: 'inputting'): void
 }>()
 
 const updateValue = (value: string) => {
   emit("update:modelValue", value);
+  emit('inputting')
 }
 </script>
 

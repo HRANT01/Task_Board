@@ -1,6 +1,6 @@
 <template>
   <div>
-
+    This is Board
   </div>
 </template>
 
