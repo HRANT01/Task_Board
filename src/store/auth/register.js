@@ -17,10 +17,9 @@ export const useRegisterStore = defineStore({
             password: payload.password,
           }
         );
-        this.registrationStatus = response.data; // Assuming response contains registration status or any relevant data
-        return this.registrationStatus;
+        this.registrationStatus = response.data;
+        return this.$state.registrationStatus;
       } catch (error) {
-        console.error(error.response, 'hereeeeeeee');
         return  error.response;
       }
     },

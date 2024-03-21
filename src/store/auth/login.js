@@ -1,3 +1,4 @@
+// store.js
 import { defineStore } from 'pinia';
 import axios from 'axios';
 
@@ -5,6 +6,7 @@ export const useAuthStore = defineStore({
   id: 'auth',
   state: () => ({
     token: null,
+    refreshToken: null
   }),
   actions: {
     async A_Login(payload) {
@@ -16,11 +18,30 @@ export const useAuthStore = defineStore({
             password: payload.password,
           }
         );
-        this.token = response.data.token;
-        return this.token;
+        this.$state.token = response.data.access;
+        this.$state.refreshToken = response.data.refresh;
+
+        localStorage.setItem('token', this.$state.token);
+        localStorage.setItem('refreshToken', this.$state.refreshToken);
+
+        return this.$state.token;
       } catch (error) {
-        console.log(error.response, 'eeeeeeeeeeeeeeeeeee')
-        return error.response
+        return error.response;
+      }
+    },
+    async refreshAccessToken(token) {
+      try {
+        const response = await axios.post(
+          'https://trello.backend.tests.nekidaem.ru/api/v1/users/token/refresh/',
+          {
+            refresh: token,
+          }
+        );
+
+        this.$state.token = response.data.access;
+
+      } catch (error) {
+        console.error(error)
       }
     },
   },

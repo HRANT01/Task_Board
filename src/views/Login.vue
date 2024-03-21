@@ -52,22 +52,16 @@ const passwordError = ref<string>('')
 
 
 const login = async () => {
-  try {
-    const response: any = await authStore.A_Login({ username: userName.value, password: password.value });
-    if (response && response.status >= 400) {
-      loginError.value = response.data.detail;
-      passwordError.value = response.data.password ? response.data.password[0] : '';
-      userNameError.value = response.data.username ? response.data.username[0] : '';
-    } else {
-      console.log('ssssssssssssssss')
-      router.push('/taskBoard')
-    }
-  } catch (error) {
-    console.error('Error during login:', error);
-    // Handle the error as needed
+  const response = await authStore.A_Login({ username: userName.value, password: password.value })
+
+  if (response && response.status >= 400) {
+    loginError.value = response.data.detail;
+    passwordError.value = response.data.password ? response.data.password[0] : '';
+    userNameError.value = response.data.username ? response.data.username[0] : '';
+  } else {
+    await router.push('/taskBoard')
   }
 };
-
 
 const resetErrors = () => {
   loginError.value = ''
