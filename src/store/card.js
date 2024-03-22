@@ -47,5 +47,46 @@ export const useCardStore = defineStore('card', {
         this.error = error.message;
       }
     },
+    async updateCardPosition(cardId, newPosition) {
+      try {
+        const authStore = useAuthStore();
+        const accessToken = authStore.$state.token;
+
+        const payload = {
+          row: newPosition.row.toString(),
+          seq_num: newPosition.seq_num,
+          text: "string"
+        };
+
+        const response = await axios.patch(`https://trello.backend.tests.nekidaem.ru/api/v1/cards/${cardId}/`, payload, {
+          headers: {
+            Authorization: `JWT ${accessToken}`,
+          },
+        });
+
+        return response.data;
+
+      } catch (error) {
+        console.error('Error updating card position:', error);
+        throw error;
+      }
+    },
+    async deleteCard(cardId) {
+      try {
+        const authStore = useAuthStore();
+        const accessToken = authStore.$state.token;
+
+        await axios.delete(`https://trello.backend.tests.nekidaem.ru/api/v1/cards/${cardId}/`, {
+          headers: {
+            Authorization: `JWT ${accessToken}`,
+          },
+        });
+
+        this.cards = this.cards.filter(card => card.id !== cardId);
+      } catch (error) {
+        console.error('Error deleting card:', error);
+        throw error;
+      }
+    },
   },
 });
