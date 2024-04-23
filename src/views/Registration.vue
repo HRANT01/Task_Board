@@ -92,7 +92,7 @@ const register = async () => {
     repeatPasswordError.value = response.data.password ? response.data.password[0] : '';
     userNameError.value = response.data.username ? response.data.username[0] : '';
   } else {
-    await router.push('/taskBoard')
+    await router.push('/')
   }
 };
 

@@ -26,7 +26,7 @@
         />
       </div>
       <div class="flex justify-between items-center pt-3">
-        <router-link to="/registration" class="underline text-blue-400">Create Account</router-link>
+        <router-link to="/Task_Board/registration" class="underline text-blue-400">Create Account</router-link>
         <CustomButton @click="login">Sign In</CustomButton>
       </div>
     </div>
