@@ -5,15 +5,11 @@ import Board from "../views/Board.vue";
 
 const routes = [
   {
-    path: '/',
-    redirect: '/Task_Board/' // Redirect to the base URL
-  },
-  {
-    path: '/Task_Board/', // Notice the leading and trailing slashes
+    path: '/', // Notice the leading and trailing slashes
     component: Login
   },
   {
-    path: '/Task_Board/registration', // Notice the leading slash
+    path: '/registration', // Notice the leading slash
     component: Registration
   },
   {
