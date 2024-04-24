@@ -1,6 +1,7 @@
 <template>
   <div class="bg-amber-50 w-full h-screen flex justify-center items-center">
-    <div class="bg-blue-950 p-8 rounded-2xl flex flex-col min-w-80 w-[30%] ">
+    <div class="bg-blue-950 p-8 rounded-2xl flex flex-col min-w-80 w-[30%]">
+      <span v-if="accountCreated">Account successfully created, you can now Log IN</span>
       <h1 class="text-white text-3xl mb-5">Create Account</h1>
       <div class="pb-4">
         <custom-input
@@ -17,7 +18,7 @@
         <custom-input
             v-model="email"
             placeholder="Email"
-            label="Esmail"
+            label="Email"
             input-type="email"
             text-color="white"
             :error-message="emailError"
@@ -47,6 +48,7 @@
         />
       </div>
       <div class="flex justify-between items-center pt-3">
+        <router-link to="/" class="underline text-blue-400">Back To Login</router-link>
         <CustomButton @click="checkPasswords">Create Account</CustomButton>
       </div>
     </div>
@@ -69,7 +71,7 @@ const email = ref('')
 const choosePassword = ref('')
 const repeatPassword = ref('')
 
-
+const accountCreated = ref(true)
 
 const checkPasswords = () => {
   if(choosePassword.value === repeatPassword.value && repeatPassword.value  && choosePassword.value) {
