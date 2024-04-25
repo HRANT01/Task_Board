@@ -5,16 +5,20 @@ import Board from "../views/Board.vue";
 
 const routes = [
   {
-    path: '/', // Notice the leading and trailing slashes
+    path: '/',
     component: Login
   },
   {
-    path: '/registration', // Notice the leading slash
+    path: '/registration',
     component: Registration
   },
   {
-    path: '/taskBoard', // Notice the leading slash
+    path: '/taskBoard',
     component: Board
+  },
+  {
+    path: '/:catchAll(.*)',
+    redirect: '/'
   }
 ];
 
