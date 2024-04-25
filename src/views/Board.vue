@@ -79,7 +79,7 @@ const logout = () => {
   localStorage.removeItem('refreshToken');
   localStorage.removeItem('accessToken');
 
-  router.push('/');
+  router.push('/Task_Board');
 }
 
 const addTaskToColumn = async () => {

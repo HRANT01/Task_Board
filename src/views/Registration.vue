@@ -47,7 +47,7 @@
         />
       </div>
       <div class="flex justify-between items-center pt-3">
-        <router-link to="/" class="underline text-blue-400">Back To Login</router-link>
+        <router-link to="/Task_Board" class="underline text-blue-400">Back To Login</router-link>
         <CustomButton @click="checkPasswords">Create Account</CustomButton>
       </div>
     </div>
