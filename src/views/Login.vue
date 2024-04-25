@@ -26,7 +26,7 @@
         />
       </div>
       <div class="flex justify-between items-center pt-3">
-        <router-link to="/Task_Board/registration" class="underline text-blue-400">Create Account</router-link>
+        <router-link to="/registration" class="underline text-blue-400">Create Account</router-link>
         <CustomButton @click="login">Sign In</CustomButton>
       </div>
     </div>
@@ -59,7 +59,7 @@ const login = async () => {
     passwordError.value = response.data.password ? response.data.password[0] : '';
     userNameError.value = response.data.username ? response.data.username[0] : '';
   } else {
-    await router.push('/Task_Board/taskBoard')
+    await router.push('/taskBoard')
   }
 };
 

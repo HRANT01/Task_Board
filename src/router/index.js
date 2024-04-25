@@ -1,25 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Login from '../views/Login.vue';
-import Registration from '../views/Registration.vue';
-import Board from '../views/Board.vue';
+import Login from '../views/Login.vue'
+import Registration from "../views/Registration.vue";
+import Board from "../views/Board.vue";
 
 const routes = [
   {
-    path: '/Task_Board/', // Adjust the base path if necessary
+    path: '/', // Notice the leading and trailing slashes
     component: Login
   },
   {
-    path: '/Task_Board/registration',
+    path: '/registration', // Notice the leading slash
     component: Registration
   },
   {
-    path: '/Task_Board/taskBoard',
+    path: '/taskBoard', // Notice the leading slash
     component: Board
   }
 ];
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHistory('/Task_Board/'),
   routes
 });
 
